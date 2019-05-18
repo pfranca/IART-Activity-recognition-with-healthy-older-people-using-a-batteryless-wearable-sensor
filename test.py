@@ -7,8 +7,33 @@ import os
 
 np.set_printoptions(threshold=np.inf)
 
+#np.random.seed(3);
 
 csv_path = "/home/franza/Desktop/WIP/IART-Activity-recognition-with-healthy-older-people-using-a-batteryless-wearable-sensor/dataset/teste.csv"
+
+
+train_dataset = np.genfromtxt(csv_path, delimiter=',');
+
+
+features = train_dataset[:, :-1];
+label = train_dataset[:, -1];
+
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Dense(8, activation=tf.nn.sigmoid))
+model.add(tf.keras.layers.Dense(5, activation=tf.nn.softmax))
+
+model.compile(optimizer='adam',
+            loss='sparse_categorical_crossentropy',
+            metrics=['accuracy']
+            )
+model.fit(features, label, epochs=10)
+
+
+
+
+
+
+
 #train_dataset_fp = tf.keras.utils.get_file(fname=os.path.basename(csv_path), origin = csv_path)
 
 # train_dataset_fp = pd.read_csv(csv_path)
@@ -34,23 +59,6 @@ csv_path = "/home/franza/Desktop/WIP/IART-Activity-recognition-with-healthy-olde
 
 # features = tf.keras.utils.normalize(features)
 
-train_dataset = np.genfromtxt(csv_path, delimiter=',');
-
 #train_dataset = tf.keras.utils.normalize(train_dataset, axis=1);
 
-features = train_dataset[:, :-1];
-label = train_dataset[:, -1];
-
-model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Dense(8, activation=tf.nn.sigmoid))
-model.add(tf.keras.layers.Dense(5, activation=tf.nn.softmax))
-
-model.compile(optimizer='adam',
-            loss='sparse_categorical_crossentropy',
-            metrics=['accuracy']
-            )
-model.fit(features, label, epochs=10)
-
 #val_loss, val_acc = model.evaluate(features, label)
-
-
