@@ -26,7 +26,7 @@ model.compile(optimizer='adam',
             loss='sparse_categorical_crossentropy',
             metrics=['accuracy']
             )
-model.fit(features, label, epochs=10)
+model.fit(features, label, epochs=2)
 
 
 
