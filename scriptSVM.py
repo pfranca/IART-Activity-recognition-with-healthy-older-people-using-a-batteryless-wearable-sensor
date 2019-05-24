@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 #matplotlib inline
 import time
 
+print("Suport Vector Machine")
+
 csv_path = "/home/franza/Desktop/WIP/IART-Activity-recognition-with-healthy-older-people-using-a-batteryless-wearable-sensor/dataset/teste.csv"
 
 names = ['time', 'frontalAcc', 'verticalAcc', 'laterallAcc', 'CantennaId','rssi', 'phase','freq','label']
@@ -28,7 +30,13 @@ svclassifier.fit(X_train, y_train)
 y_pred = svclassifier.predict(X_test)  
 
 from sklearn.metrics import classification_report, confusion_matrix  
+print()
+print()
+print("Confusion Matrix")
 print(confusion_matrix(y_test,y_pred))  
+
+print()
+print("Classification Report")
 print(classification_report(y_test,y_pred))  
 end = time.time()
 

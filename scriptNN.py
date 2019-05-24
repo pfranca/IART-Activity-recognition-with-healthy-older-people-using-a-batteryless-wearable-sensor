@@ -40,15 +40,15 @@ start = time.time()
 
 model = Sequential();
 model.add(Dense(8, input_dim=8, activation='sigmoid'));
-# model.add(Dense(8, activation='relu'));
+# model.add(Dense(6, activation='relu'));
 # model.add(Dense(6, activation='relu'));
 # model.add(Dense(6, activation='relu'));
 # model.add(Dense(4, activation='relu'));
-# model.add(Dense(2, activation='relu'));
+# model.add(Dense(4, activation='relu'));
 model.add(Dense(classifications, activation='softmax'));
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy']);
-model.fit(x_train, y_train,  epochs=10, validation_data=(x_test,y_test));
+model.fit(x_train, y_train, epochs=10, validation_data=(x_test,y_test)); #batch_size=32
 end = time.time()
 
 duration = end - start
